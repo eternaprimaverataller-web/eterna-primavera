@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Eterna Primavera 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f7f4ef; font-family: 'Jost', sans-serif; color: #3a3530; }
+    .ep-catalog { padding: 0 0 3rem; }
+
+    .ep-header { text-align: center; padding: 3rem 1.5rem 2rem; }
+    .ep-header::after { content: ''; display: block; width: 60px; height: 1px; background: #AF9F90; margin: 1.5rem auto 0; }
+    .ep-pretitle { font-size: 11px; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: #AF9F90; margin-bottom: 0.75rem; }
+
+    .ep-divider { display: flex; align-items: center; gap: 12px; padding: 0 2rem; margin: 0.5rem 0 2rem; }
+    .ep-divider::before, .ep-divider::after { content: ''; flex: 1; height: 0.5px; background: #d4ccc3; }
+    .ep-divider-icon { font-size: 14px; color: #C7CDBF; }
+
+    .ep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; background: #d4ccc3; }
+
+    .ep-product { background: #f7f4ef; padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: background 0.2s; }
+    .ep-product:hover { background: #f0ebe3; }
+
+    .ep-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #f0ebe3; }
+    .ep-photo-placeholder { width: 100%; aspect-ratio: 4 / 3; background: #f0ebe3; border: 0.5px dashed #C7CDBF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .ep-photo-placeholder span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #C7CDBF; }
+
+    .ep-product-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: #3a3530; line-height: 1.25; letter-spacing: 0.02em; }
+    .ep-product-desc { font-size: 13px; color: #7a6e66; line-height: 1.65; font-weight: 300; }
+
+    .ep-tag { display: inline-block; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; border: 0.5px solid #C7CDBF; padding: 3px 8px; align-self: flex-start; margin-top: 0.25rem; }
+    .ep-tag.fresh { color: #8a9e8a; border-color: #C7CDBF; }
+    .ep-tag.dry   { color: #b8956e; border-color: #dab98a; }
+    .ep-tag.gift  { color: #b07890; border-color: #dba8bb; }
+    .ep-tag.single{ color: #AF9F90; border-color: #c8b9ad; }
+
+    .ep-prices { margin-top: 0.25rem; padding-top: 0.5rem; border-top: 0.5px solid #e8e2db; display: flex; flex-direction: column; gap: 4px; }
+    .ep-price-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; font-weight: 300; color: #AF9F90; }
+    .ep-price-row .size { font-family: 'Cormorant Garamond', serif; font-size: 15px; color: #3a3530; }
+    .ep-price-row .price { letter-spacing: 0.03em; }
+    .ep-price-subhead { font-size: 13px; font-family: 'Jost', sans-serif; font-weight: 400; color: #AF9F90; letter-spacing: 0.05em; }
+
+    .ep-card-note { font-size: 11px; color: #c8bdb6; font-weight: 300; letter-spacing: 0.02em; font-style: italic; }
+
+    .ep-collab { margin: 2rem 1.5px 0; background: #f0ebe3; border-top: 0.5px solid #d4ccc3; padding: 2rem 1.75rem; display: flex; gap: 1.75rem; align-items: center; }
+    .ep-collab-image-wrap { flex-shrink: 0; }
+    .ep-collab-photo { width: 200px; height: 200px; object-fit: cover; display: block; background: #f7f4ef; }
+    .ep-collab-placeholder { width: 200px; height: 200px; border: 0.5px dashed #C7CDBF; background: #f7f4ef; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .ep-collab-placeholder span { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #C7CDBF; text-align: center; padding: 0 8px; }
+    .ep-collab-text { flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+    .ep-collab-pretitle { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #C7CDBF; }
+    .ep-collab-message { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; color: #3a3530; line-height: 1.4; }
+    .ep-collab-message strong { font-style: normal; font-weight: 600; }
+    .ep-collab-price { font-size: 13px; color: #AF9F90; font-weight: 300; letter-spacing: 0.05em; }
+
+    .ep-footer { text-align: center; padding: 2.5rem 1.5rem 0; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+    .ep-footer-tagline { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #c8bdb6; }
+
+    .ep-logo { max-width: 300px; height: auto; max-height: 120px; object-fit: contain; margin: 0.5rem auto; display: block; }
+    .ep-logo-placeholder { width: 300px; height: 100px; border: 0.5px dashed #C7CDBF; background: #f0ebe3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; margin: 0.5rem auto; }
+    .ep-logo-placeholder span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #C7CDBF; }
+
+    .ep-logo-footer { max-width: 220px; height: auto; max-height: 80px; object-fit: contain; display: block; margin: 0 auto; }
+    .ep-logo-placeholder-footer { width: 220px; height: 80px; border: 0.5px dashed #C7CDBF; background: #f0ebe3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; margin: 0 auto; }
+    .ep-logo-placeholder-footer span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #C7CDBF; }
+  </style>
+</head>
+<body>
+<div class="ep-catalog">
+
+  <div class="ep-header">
+    <p class="ep-pretitle">Catálogo · 2026</p>
+    <img src="imagenes/logo-principal.png" alt="Eterna Primavera" class="ep-logo"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ep-logo-placeholder" style="display:none"><span>logo-principal.png</span></div>
+  </div>
+
+  <div class="ep-divider"><span class="ep-divider-icon">✦</span></div>
+
+  <div class="ep-grid">
+
+    <!-- img_01 Bouquets Secos -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_01.jpg" alt="Bouquets Secos"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_01.jpg</span></div>
+      <p class="ep-product-name">Bouquets Secos</p>
+      <p class="ep-product-desc">Ramos elaborados con flores secas y preservadas. Belleza duradera que permanece en el tiempo.</p>
+      <span class="ep-tag dry">Preservado</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Mini</span><span class="price">$ 25.000</span></div>
+        <div class="ep-price-row"><span class="size">XS</span><span class="price">$ 45.000</span></div>
+        <div class="ep-price-row"><span class="size">S</span><span class="price">$ 85.000</span></div>
+        <div class="ep-price-row"><span class="size">M</span><span class="price">$ 115.000</span></div>
+        <div class="ep-price-row"><span class="size">L</span><span class="price">$ 185.000</span></div>
+        <div class="ep-price-row"><span class="size">XL</span><span class="price">$ 215.000</span></div>
+      </div>
+      <p class="ep-card-note">* Medidas aproximadas. Cada pieza varía por su proceso artesanal.</p>
+    </div>
+
+    <!-- img_02 Esferas -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_02.jpg" alt="Esferas"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_02.jpg</span></div>
+      <p class="ep-product-name">Esferas</p>
+      <p class="ep-product-desc">Pieza escultural con flores secas y preservadas. Decorativa y de larga duración, perfecta para el hogar.</p>
+      <span class="ep-tag dry">Preservado</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Mini</span><span class="price">$ 58.000</span></div>
+        <div class="ep-price-row"><span class="size">XS</span><span class="price">$ 65.000</span></div>
+        <div class="ep-price-row"><span class="size">S</span><span class="price">$ 85.000</span></div>
+        <div class="ep-price-row"><span class="size">M</span><span class="price">$ 145.000</span></div>
+        <div class="ep-price-row"><span class="size">L</span><span class="price">$ 185.000</span></div>
+        <div class="ep-price-row"><span class="size">XL</span><span class="price">$ 295.000</span></div>
+      </div>
+      <p class="ep-card-note">* Medidas aproximadas. Cada pieza varía por su proceso artesanal.</p>
+    </div>
+
+    <!-- img_03 Frasco Floral -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_03.jpg" alt="Frasco Floral"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_03.jpg</span></div>
+      <p class="ep-product-name">Frasco Floral</p>
+      <p class="ep-product-desc">Arreglo floral en frasco de vidrio. Detalle decorativo y regalo personal con mucho carácter.</p>
+      <span class="ep-tag dry">Preservado</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Frasco Floral</span><span class="price">$ 75.000</span></div>
+      </div>
+    </div>
+
+    <!-- img_04 Solitarios -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_04.jpg" alt="Solitarios"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_04.jpg</span></div>
+      <p class="ep-product-name">Solitarios</p>
+      <p class="ep-product-desc">Flor preservada en frasco individual. Minimalista, elegante y con mucho significado.</p>
+      <span class="ep-tag single">Minimalista</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Transparente</span><span class="price">$ 25.000</span></div>
+        <div class="ep-price-row"><span class="size">Ámbar</span><span class="price">$ 33.000</span></div>
+        <div class="ep-price-row"><span class="size">Azul</span><span class="price">$ 40.000</span></div>
+        <div class="ep-price-row"><span class="size">High</span><span class="price">$ 85.000</span></div>
+      </div>
+      <p class="ep-card-note">* Medidas aproximadas. Cada pieza varía por su proceso artesanal.</p>
+    </div>
+
+    <!-- img_05 Bouquets Frescos -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_05.jpg" alt="Bouquets Frescos"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_05.jpg</span></div>
+      <p class="ep-product-name">Bouquets Frescos</p>
+      <p class="ep-product-desc">Ramos con flores de temporada. Colores vibrantes y aroma natural, elaborados con anticipación.</p>
+      <span class="ep-tag fresh">Fresco</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">S</span><span class="price">$ 95.000</span></div>
+        <div class="ep-price-row"><span class="size">M</span><span class="price">$ 145.000</span></div>
+        <div class="ep-price-row"><span class="size">L</span><span class="price">$ 210.000</span></div>
+        <div class="ep-price-row"><span class="size">XL</span><span class="price">$ 245.000</span></div>
+        <div class="ep-price-row"><span class="size">XXL</span><span class="price">$ 350.000</span></div>
+      </div>
+    </div>
+
+    <!-- img_06 Ramos Frescos -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_06.jpg" alt="Ramos Frescos"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_06.jpg</span></div>
+      <p class="ep-product-name">Ramos Frescos</p>
+      <p class="ep-product-desc">Rosas y claveles frescos. Clásicos y fragantes, en media docena o docena completa.</p>
+      <span class="ep-tag fresh">Fresco</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="ep-price-subhead">Rosas</span><span></span></div>
+        <div class="ep-price-row"><span class="size">½ Docena</span><span class="price">$ 67.000</span></div>
+        <div class="ep-price-row"><span class="size">1 Docena</span><span class="price">$ 100.000</span></div>
+        <div class="ep-price-row" style="margin-top:6px;"><span class="ep-price-subhead">Claveles</span><span></span></div>
+        <div class="ep-price-row"><span class="size">½ Docena</span><span class="price">$ 47.000</span></div>
+        <div class="ep-price-row"><span class="size">1 Docena</span><span class="price">$ 87.000</span></div>
+      </div>
+    </div>
+
+    <!-- img_07 Diademas y Peinetas -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_07.jpg" alt="Diademas y Peinetas Florales"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_07.jpg</span></div>
+      <p class="ep-product-name">Diademas & Peinetas Florales</p>
+      <p class="ep-product-desc">Accesorios florales elaborados a mano. Perfectos para novias, eventos y ocasiones especiales.</p>
+      <span class="ep-tag gift">Accesorios</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Diadema</span><span class="price">$ 115.000</span></div>
+        <div class="ep-price-row"><span class="size">Peineta</span><span class="price">$ 75.000</span></div>
+      </div>
+      <p class="ep-card-note">* Cada pieza varía por su proceso artesanal.</p>
+    </div>
+
+    <!-- img_08 Gift Set -->
+    <div class="ep-product">
+      <img class="ep-photo" src="imagenes/img_08.jpg" alt="Gift Set"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-photo-placeholder" style="display:none"><span>img_08.jpg</span></div>
+      <p class="ep-product-name">Gift Set</p>
+      <p class="ep-product-desc">Set de regalo completo, elegante y femenino. Incluye cosmetiquera y bouquet seco.</p>
+      <span class="ep-tag gift">Regalo</span>
+      <div class="ep-prices">
+        <div class="ep-price-row"><span class="size">Gift Set</span><span class="price">$ 85.000</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- img_09 BrownBliss -->
+  <div class="ep-collab">
+    <div class="ep-collab-image-wrap">
+      <img class="ep-collab-photo" src="imagenes/img_09.jpg" alt="BrownBliss"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ep-collab-placeholder" style="display:none"><span>img_09.jpg</span></div>
+    </div>
+    <div class="ep-collab-text">
+      <span class="ep-collab-pretitle">Colaboración especial</span>
+      <p class="ep-collab-message">Acompaña tus flores con los deliciosos brownies de <strong>BrownBliss</strong></p>
+      <p class="ep-collab-price">$ 25.000</p>
+    </div>
+  </div>
+
+  <div class="ep-footer">
+    <img src="imagenes/logo-principal.png" alt="Eterna Primavera" class="ep-logo-footer"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ep-logo-placeholder-footer" style="display:none"><span>logo-principal.png</span></div>
+    <div class="ep-footer-tagline">Santa Marta, Colombia · 2026</div>
+    <div style="font-size:11px;color:#d4ccc3;letter-spacing:0.12em;font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:4px;">De madre a hija, de raíz a flor.</div>
+  </div>
+
+</div>
+</body>
+</html>
